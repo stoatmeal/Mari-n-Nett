@@ -8,11 +8,11 @@ public class LimbMovement : MonoBehaviour
 
 
     //Input Keys
-    [SerializeField] private InputAction KeyE;
-    [SerializeField] private InputAction KeyR;
-    [SerializeField] private InputAction KeyD;
-    [SerializeField] private InputAction KeyF;
-    [SerializeField] private InputAction SpaceBar;
+    [SerializeField] private InputAction leftArmInput; 
+    [SerializeField] private InputAction rightArmInput;
+    [SerializeField] private InputAction leftLegInput;
+    [SerializeField] private InputAction rightLegInput;
+    [SerializeField] private InputAction holdInput;
 
     //Bool that checks whether or not limbs are held in place
     public bool limbsHeld = false;
@@ -28,11 +28,11 @@ public class LimbMovement : MonoBehaviour
 
     void Start()
     {
-        KeyE.Enable();
-        KeyR.Enable();
-        KeyD.Enable();
-        KeyF.Enable();
-        SpaceBar.Enable();
+        leftArmInput.Enable();
+        rightArmInput.Enable();
+        leftLegInput.Enable();
+        rightLegInput.Enable();
+        holdInput.Enable();
         limbsHeld = false;
     }
 
@@ -40,15 +40,16 @@ public class LimbMovement : MonoBehaviour
     void Update()
     {
         ToggleHold();
-        SetArmRotation(leftArm,KeyE,200,350);
-        SetArmRotation(rightArm,KeyR,160,10);
-        SetArmRotation(leftLeg,KeyD,270,0);
-        SetArmRotation(rightLeg,KeyF,90,0);
+        SetArmRotation(leftArm, leftArmInput, 200, 350);
+
+        SetArmRotation(rightArm,rightArmInput,160,10);
+        SetArmRotation(leftLeg,leftLegInput,270,0);
+        SetArmRotation(rightLeg,rightLegInput,90,0);
     }
 
 //If Space Pressed, toggle limbs being held in place
 public void ToggleHold(){
-    if (Keyboard.current.spaceKey.wasPressedThisFrame){
+    if (holdInput.WasPressedThisFrame()){
         limbsHeld = !limbsHeld;
         Debug.Log("Limbs Pinned: "+limbsHeld);
     }
