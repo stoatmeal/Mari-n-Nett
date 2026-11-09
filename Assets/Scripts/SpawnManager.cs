@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -35,24 +36,40 @@ public class SpawnManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
 
     public GameObject otherPlayer;
+
+
+    [SerializeField] private InputAction startButton;
+    [SerializeField] private InputAction playerButton; 
+
+
     
     void Start()
     {
+        startButton.Enable();
+        playerButton.Enable();
         ballList = new List<GameObject>();
         turnOnGravity = player.GetComponent<TurnOnGravity>();
         gameStarted = false;
         score = 0;
         gameOverText.gameObject.SetActive(false);
-
+        
     }
 
     void Update()
     {
-        if(player != null){player.SetActive(playerEnabled);}
-        scoreTextBox.gameObject.SetActive(playerEnabled);
+        if(player != null){
+        player.SetActive(playerEnabled);
+        scoreTextBox.gameObject.SetActive(playerEnabled);}
+        
         GameLoop();
         CheckGameOver();
         scoreTextBox.text = "Score: "+score;
+        if(startButton.WasPerformedThisFrame()){
+            StartGame();
+        }
+        if(playerButton.WasPerformedThisFrame()){
+            PlayerPicker();
+        }
     }
     //ball spawn points
     Vector3 LeftArmBall(){

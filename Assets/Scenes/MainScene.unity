@@ -207,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 58544369}
   - component: {fileID: 58544370}
+  - component: {fileID: 58544371}
   m_Layer: 0
   m_Name: Player1SpawnManager
   m_TagString: Untagged
@@ -256,6 +257,60 @@ MonoBehaviour:
   scoreTextBox: {fileID: 745722411}
   gameOverText: {fileID: 77707013}
   otherPlayer: {fileID: 369940125}
+  startButton:
+    m_Name: Start Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4885a1f8-7e16-41e8-bf3c-ef067a15cb3b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: f8d3cce2-e780-4dff-aa86-72042eb0ff95
+      m_Path: <Keyboard>/enter
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Start Button
+      m_Flags: 0
+    m_Flags: 0
+  playerButton:
+    m_Name: Player Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2b84caee-bddc-40f8-9ad9-6fbf176f26cf
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2250151f-5ed5-4d5d-b688-49d79ce317d4
+      m_Path: <Keyboard>/numpad1
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Button
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 4f44f60c-7cd9-4c8a-a5dc-3251136e2cfc
+      m_Path: <Keyboard>/1
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Button
+      m_Flags: 0
+    m_Flags: 0
+--- !u!114 &58544371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58544368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c363eb3c95902b478dcc858c101f33b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &77707011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1205,48 @@ MonoBehaviour:
   scoreTextBox: {fileID: 1386761964}
   gameOverText: {fileID: 77707013}
   otherPlayer: {fileID: 1172064573}
+  startButton:
+    m_Name: Start Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f596a2d5-ae37-465b-bd1c-a3f617061db6
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: fadb0bed-e7ab-487f-b978-2fab2062f906
+      m_Path: <Keyboard>/enter
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Start Button
+      m_Flags: 0
+    m_Flags: 0
+  playerButton:
+    m_Name: Player Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0e4816ac-8d0c-4eee-b036-d99ab4632f46
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d709d399-7488-4533-9ff7-0b23fb7efe6a
+      m_Path: <Keyboard>/numpad2
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Button
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 71592601-9406-44dd-9e71-a36a83ca8aa9
+      m_Path: <Keyboard>/2
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Button
+      m_Flags: 0
+    m_Flags: 0
 --- !u!4 &715036779
 Transform:
   m_ObjectHideFlags: 0
