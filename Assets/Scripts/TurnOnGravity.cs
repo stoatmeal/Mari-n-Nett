@@ -9,13 +9,11 @@ public class TurnOnGravity : MonoBehaviour
     public bool gravityOn = false;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         floor = GameObject.FindWithTag("Floor");
-
     }
 
     // Update is called once per frame
@@ -27,5 +25,9 @@ public class TurnOnGravity : MonoBehaviour
             Debug.Log("Drop Gravity");
 
         }
+
+    }
+    public bool isGravityOn(){
+        return gravityOn;
     }
 }

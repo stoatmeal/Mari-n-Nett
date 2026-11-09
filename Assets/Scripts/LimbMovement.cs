@@ -33,7 +33,7 @@ public class LimbMovement : MonoBehaviour
         leftLegInput.Enable();
         rightLegInput.Enable();
         holdInput.Enable();
-        limbsHeld = false;
+        limbsHeld = true;
     }
 
     // Update is called once per frame
@@ -49,9 +49,13 @@ public class LimbMovement : MonoBehaviour
 
 //If Space Pressed, toggle limbs being held in place
 public void ToggleHold(){
-    if (holdInput.WasPressedThisFrame()){
-        limbsHeld = !limbsHeld;
+    if (holdInput.IsPressed()){
+        limbsHeld = false;
         Debug.Log("Limbs Pinned: "+limbsHeld);
+    }
+    else{
+        limbsHeld = true;
+        Debug.Log("Limbs Pinned: "+limbsHeld);       
     }
     
 }
@@ -83,9 +87,15 @@ public void SetArmRotation(GameObject arm, InputAction inputButton, float topAng
     //rotate towards top or bottom angle depending on if button is pressed
     float newAngle = Mathf.MoveTowardsAngle(angle,targetAngle, rotationSpeed * Time.deltaTime);
     
-    //move arm according to newAngle
-    if(!limbsHeld){
-        arm.transform.localRotation = Quaternion.Euler(0f, 0f, newAngle);}
+    //move arm according to newAngle if limbs arent being held
+    if(limbsHeld && direction < 0){
+        arm.transform.localRotation = Quaternion.Euler(0f, 0f, newAngle);
+        }
+    else if(!limbsHeld){
+        arm.transform.localRotation = Quaternion.Euler(0f, 0f, newAngle);
+        }
+
     }
+
 }
     
