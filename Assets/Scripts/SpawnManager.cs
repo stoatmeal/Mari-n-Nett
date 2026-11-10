@@ -59,17 +59,18 @@ public class SpawnManager : MonoBehaviour
     {
         if(player != null){
         player.SetActive(playerEnabled);
-        scoreTextBox.gameObject.SetActive(playerEnabled);}
-        
+        scoreTextBox.gameObject.SetActive(playerEnabled);
         GameLoop();
-        CheckGameOver();
         scoreTextBox.text = "Score: "+score;
-        if(startButton.WasPerformedThisFrame()){
+        if(startButton.WasPressedThisFrame()){
             StartGame();
         }
         if(playerButton.WasPerformedThisFrame()){
             PlayerPicker();
         }
+        }
+        CheckGameOver();
+
     }
     //ball spawn points
     Vector3 LeftArmBall(){
@@ -122,7 +123,7 @@ public class SpawnManager : MonoBehaviour
     
     public void StartGame(){
         //check if at least 1 player is enabled
-        if(playerEnabled){
+        if(playerEnabled && !gameStarted){
         gameStarted = true;
         UIMenu.SetActive(false);
         wallSpeed = 1;
@@ -162,7 +163,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     public void PlayerPicker(){
-        playerEnabled = !playerEnabled;
+        if(!gameStarted){playerEnabled = !playerEnabled;}
     }
 
     public void DestroyBallsandWall(){

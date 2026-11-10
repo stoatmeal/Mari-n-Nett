@@ -8,6 +8,8 @@ public class TurnOnGravity : MonoBehaviour
     private float floorEdge = -10.2f;
     public bool gravityOn = false;
 
+    public GameObject lineRenderer;
+
 
     void Awake()
     {
@@ -23,6 +25,7 @@ public class TurnOnGravity : MonoBehaviour
             rb.useGravity = true;
             gravityOn = true;
             Debug.Log("Drop Gravity");
+            lineRenderer.SetActive(false);
 
         }
 

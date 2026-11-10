@@ -12,11 +12,13 @@ public class LimbMovement : MonoBehaviour
     [SerializeField] private InputAction rightArmInput;
     [SerializeField] private InputAction leftLegInput;
     [SerializeField] private InputAction rightLegInput;
-    [SerializeField] private InputAction holdInput;
+    [SerializeField] private InputAction topLimbHoldInput;
+    [SerializeField] private InputAction bottomLimbHoldInput;
 
     //Bool that checks whether or not limbs are held in place
-    public bool limbsHeld = false;
 
+    public bool topLimbsHeld = false;
+    public bool bottomLimbsHeld = false;
 
     public float rotationSpeed = 200;
 
@@ -32,23 +34,26 @@ public class LimbMovement : MonoBehaviour
         rightArmInput.Enable();
         leftLegInput.Enable();
         rightLegInput.Enable();
-        holdInput.Enable();
-        limbsHeld = true;
+        topLimbHoldInput.Enable();
+        bottomLimbHoldInput.Enable();
+        topLimbsHeld = true;
+        bottomLimbsHeld = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ToggleHold();
-        SetArmRotation(leftArm, leftArmInput, 200, 350);
+        ToggleHold(topLimbHoldInput,ref topLimbsHeld);
+        ToggleHold(bottomLimbHoldInput,ref bottomLimbsHeld);
+        SetArmRotation(leftArm, leftArmInput, 200, 350,topLimbsHeld);
 
-        SetArmRotation(rightArm,rightArmInput,160,10);
-        SetArmRotation(leftLeg,leftLegInput,270,0);
-        SetArmRotation(rightLeg,rightLegInput,90,0);
+        SetArmRotation(rightArm,rightArmInput,160,10,topLimbsHeld);
+        SetArmRotation(leftLeg,leftLegInput,270,0,bottomLimbsHeld);
+        SetArmRotation(rightLeg,rightLegInput,90,0,bottomLimbsHeld);
     }
 
 //If Space Pressed, toggle limbs being held in place
-public void ToggleHold(){
+public void ToggleHold(InputAction holdInput,ref bool limbsHeld){
     if (holdInput.IsPressed()){
         limbsHeld = false;
         Debug.Log("Limbs Pinned: "+limbsHeld);
@@ -60,7 +65,7 @@ public void ToggleHold(){
     
 }
 
-public void SetArmRotation(GameObject arm, InputAction inputButton, float topAngle, float bottomAngle)
+public void SetArmRotation(GameObject arm, InputAction inputButton, float topAngle, float bottomAngle, bool limbsHeld)
     {
     //Z axis angle of arm in degrees, updated every frame
     float angle = arm.transform.localEulerAngles.z;
