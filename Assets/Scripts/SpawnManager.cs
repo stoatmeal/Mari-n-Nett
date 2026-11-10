@@ -36,7 +36,8 @@ public class SpawnManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
 
     public GameObject otherPlayer;
-
+    public GameObject otherPlayerSpawnManager;
+    public SpawnManager otherSpawnScript;
 
     [SerializeField] private InputAction startButton;
     [SerializeField] private InputAction playerButton; 
@@ -49,6 +50,7 @@ public class SpawnManager : MonoBehaviour
         playerButton.Enable();
         ballList = new List<GameObject>();
         turnOnGravity = player.GetComponent<TurnOnGravity>();
+        otherSpawnScript = otherPlayerSpawnManager.GetComponent<SpawnManager>();
         gameStarted = false;
         score = 0;
         gameOverText.gameObject.SetActive(false);
@@ -163,7 +165,9 @@ public class SpawnManager : MonoBehaviour
     }
 
     public void PlayerPicker(){
-        if(!gameStarted){playerEnabled = !playerEnabled;}
+        if(!gameStarted && !otherSpawnScript.gameStarted && player != null && otherPlayer != null){
+            playerEnabled = !playerEnabled;
+            }
     }
 
     public void DestroyBallsandWall(){
